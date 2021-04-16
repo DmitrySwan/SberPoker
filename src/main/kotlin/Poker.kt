@@ -11,7 +11,7 @@ fun main() {
 
     val m: MutableSet<String> = HashSet()
     val currentCards: MutableList<Int> = ArrayList()
-    for (card in cards) {
+    cards.forEach { card ->
         currentCards.add(card.substring(0, 2).toInt())
         m.add(card.substring(2))
     }
@@ -29,8 +29,8 @@ fun main() {
 }
 
 private fun cardsHaveDuplicates(cards: Array<String>): Boolean {
-    for (i in cards.indices) {
-        for (j in i + 1 until cards.size) {
+    cards.indices.forEach { i ->
+        (i + 1 until cards.size).forEach { j ->
             if (cards[i] == cards[j]) {
                 return true
             }
@@ -42,7 +42,7 @@ private fun cardsHaveDuplicates(cards: Array<String>): Boolean {
 private fun orderAndCount(currentCards: List<Int>): IntArray {
     val currentCardCounts =
         IntArray(14) // массив, где индекс = достоинство карты, значение = количество карт одного достоинства
-    for (card in currentCards) {
+    currentCards.forEach { card ->
         currentCardCounts[card] = currentCardCounts[card] + 1
     }
     println("Количество карт одного достоинства: " + currentCardCounts.contentToString())
@@ -51,7 +51,7 @@ private fun orderAndCount(currentCards: List<Int>): IntArray {
 
 private fun getStringOfOrder(currentCardCounts: IntArray): String {
     val sortedCardCounts = StringBuilder()
-    for (cardCount in currentCardCounts) {
+    currentCardCounts.forEach { cardCount ->
         sortedCardCounts.append(cardCount)
     }
     return sortedCardCounts.toString()
